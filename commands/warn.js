@@ -1,6 +1,6 @@
 const discord = require("discord.js")
 const fs = require("fs");
-const warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
+const warns = JSON.parse(fs.readFileSync("./warns.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
 
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
 
 	warns[warnUser.id].warns++;
 
-	fs.writeFile("./warnings.json", JSON.stringify(warns), (err) => {
+	fs.writeFile("./warns.json", JSON.stringify(warns), (err) => {
 		if (err) console.log(err);
 	});
 
@@ -44,7 +44,22 @@ module.exports.run = async (bot, message, args) => {
 	if (!channel) return;
 
 	channel.send(embed);
-	warnUser.send(embed);
+
+	if (warns[warnUser.id].warns == 5) {
+
+		var embed = new discord.MessageEmbed()
+			.setColor("#ff0000")
+			.setFooter(message.member.displayName, message.author.displayAvatarURL)
+			.setTimestamp()
+			.setDescription(`**WATCH OUT! Gewarnd:** ${warnUser} (${warnUser.id})
+        **Warning by:** ${message.author}
+        **Reason: ** ${reason}`)
+			.addField("Warn count:", warns[warnUser.id].warns)
+			.addField("Message:", "You have to get 1 more warn en you can get a kick");
+
+		message.channel.send(embed);
+
+    }
 
 }
 
