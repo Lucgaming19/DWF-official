@@ -45,7 +45,8 @@ module.exports.run = async (bot, message, args) => {
 			});
 
 			message.channel.send(embed);
-			message.kickUser.send(embed);
+			kickUser.send(embed);
+
 		} else if (emoji === "❌") {
 
 			msg.delete();
