@@ -44,6 +44,7 @@ module.exports.run = async (bot, message, args) => {
 	if (!channel) return;
 
 	channel.send(embed);
+	warnUser.send(embed);
 
 	if (warns[warnUser.id].warns == 5) {
 
@@ -59,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
 
 		message.channel.send(embed);
 
-    }
+	}
 
 }
 
