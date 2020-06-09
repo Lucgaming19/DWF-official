@@ -8,8 +8,6 @@ module.exports.run = async (bot, message, args) => {
 
 	if (!args[0]) return message.reply("no username found!");
 
-	if (!args[1]) return message.reply("no reason found!");
-
 	if (!message.guild.me.hasPermission("KICK_MEMBERS")) return message.reply("No perms");
 
 	var warnUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(arg[0]));
