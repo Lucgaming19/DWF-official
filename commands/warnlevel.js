@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
 
 	if (!warnUser) return message.reply("User not found!");
 
-    var warnlevel = warns[warnUser.id].warns;
+    let warnlevel = warns[warnUser.id].warns;
 
     message.reply(`${warnUser} has ${warnlevel} warnings.`);
 
