@@ -12,11 +12,8 @@ module.exports.run = async (bot, message, args) => {
 
 	var warnUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(arg[0]));
 
-	var reason = args.slice(1).join(" ");
-
 	if (!warnUser) return message.reply("User not found!");
 
-	if (warnUser.hasPermission("KICK_MEMBERS")) return message.reply("sorry you can't warn him. he is a higher or equal to you.");
     var warnlevel = warns[warnUser.id].warns;
 
     message.reply(`${warnUser} has ${warnlevel} warnings.`);
