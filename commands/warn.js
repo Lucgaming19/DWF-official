@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
 
 	if (!warnUser) return message.reply("User not found!");
 
-	if (warnUser.hasPermission("KICK_MEMBERS")) return message.reply("sorry you can't warn him. he is a higher or equal to you.");
+	if (warnUser.hasPermission("KICK_MEMBERS")) return message.reply("sorry you can't warn this person. This person is a higher or equal to you.");
 
 	if (!warns[warnUser.id]) warns[warnUser.id] = {
 		warns: 0
