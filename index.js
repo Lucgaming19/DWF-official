@@ -1,16 +1,16 @@
 ﻿const discord = require("discord.js")
 const botConfig = require("./botconfig.json")
+
 const fs = require("fs");
-const clt = new discord.Client();
-clt.commands = new discord.Collection();
 
-
+const bot = new discord.Client();
+bot.commands = new discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
 
 	if (err) console.log(err);
 
-	var jsFiles = files.filter(file => file.endsWith('.js'));
+	var jsFiles = files.filter(f => f.split(".").pop() === "js");
 
 	if (jsFiles.length <= 0) {
 		console.log("kon geen files finden.");
@@ -22,40 +22,39 @@ fs.readdir("./commands/", (err, files) => {
 		var fileGet = require(`./commands/${f}`);
 		console.log(`De file ${f} is geladen`);
 
-		clt.commands.set(fileGet.help.name, fileGet);
+		bot.commands.set(fileGet.help.name, fileGet);
 
-	})
-
-});
-
-
-clt.on("ready", async () => {
-
-	console.log(`${clt.user.username} is online!`);
-
-	clt.user.setActivity("Prefix: . \u00A9 Limburg", { type: "LISTENING" });
+    })
 
 });
 
-clt.on("message", async message => {
+bot.on("ready", async () => {
 
-	if (message.author.clt) return;
+	console.log(`${bot.user.username} is online!`);
 
-	if (message.channel.type === "dm") return;
+	bot.user.setActivity("Prefix: . \u00A9 DWF", { type: "LISTENING" });
+
+});
+
+bot.on("message", async message => {
+
+	if (message.author.bot) return;
+
+	if (message.channel.type === "dm") return;	
 
 	var prefix = botConfig.prefix;
 
-	var messageArray = message.content.split(" ");
+	var messageArray = message.content.split(" "); 
 
 	var command = messageArray[0];
 
 	var arguments = messageArray.slice(1);
 
-	var commands = clt.commands.get(command.slice(prefix.length));
+	var commands = bot.commands.get(command.slice(prefix.length));
 
 	if (!message.content.startsWith(prefix)) return;
 
-	if (commands) commands.run(clt, message, arguments);
+	if (commands) commands.run(bot, message, arguments);
 });
 
-clt.login(process.env.token); 
+bot.login(process.env.token); 
