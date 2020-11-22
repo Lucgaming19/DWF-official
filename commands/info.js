@@ -7,21 +7,15 @@ module.exports.run = async (bot, message, args) => {
 		.setDescription("discord bot info")
 		.setColor("#FF1493")
 		.addField("Bot name", bot.user.username)
-		.setThumbnail("https://cdn.discordapp.com/avatars/717417310318624849/24ba2fe79f5b0dea81070b947415a6cc.png?size=256")
+		.setThumbnail("https://cdn.discordapp.com/avatars/717417310318624849/f6b989ea36165d2b3d6050032acd1eb7.png?size=128")
 		.addField("made on", bot.user.createdAt)
 		.addFields(
 			{ name: "prefix: .", value: "prefix: ." },
 			{ name: "excisting commands:", value: "Bestaande commands:" },
 			{ name: "server information", value: "serverinfo" },
 			{ name: "information", value: "info" },
-			{ name: "who is who", value: "wie" },
-			{ name: "jose", value: "jose" },
-			{ name: "ruth", value: "ruth" },
-			{ name: "mark", value: "mark" },
-			{ name: "luc", value: "luc" },
-			{ name: "pim", value: "pim" },
-			{ name: "jimmy", value: "jimmy" })
-		.setFooter("\u00A9 DWF Discord With Friends", "https://cdn.discordapp.com/avatars/717417310318624849/24ba2fe79f5b0dea81070b947415a6cc.png?size=256")
+			{name: "help", Value: "help"})
+		.setFooter("\u00A9 [BFTF] BelgiumRoleplay", "https://cdn.discordapp.com/avatars/717417310318624849/f6b989ea36165d2b3d6050032acd1eb7.png?size=128")
 		.setTimestamp();
 
 	return message.channel.send(botEmbed);

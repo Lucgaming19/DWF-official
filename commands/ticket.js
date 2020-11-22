@@ -2,11 +2,11 @@ const discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
 
-    const categoryID = "688478364163506220";
+    const categoryID = "768538213194399815";
 
     var userName = message.author.username;
     var userDiscriminator = message.author.discriminator;
-    var tagrole = "688478365635838038";
+    var tagrole = "748226398166057172";
 
     var ticketBestaat = false   
 
@@ -24,12 +24,12 @@ module.exports.run = async (bot, message, args) => {
 
     if (ticketBestaat) return;
 
-    if (!args[0]) return message.reply("Gelieve een reden op te geven!");
+    if (!args[0]) return message.reply("Gelieve een reden op te geven!, Please give a reason.");
     var reason = args.slice(0).join(" ");
 
     var embed = new discord.MessageEmbed()
         .setTitle("Geachte " + message.author.username + " Uw ticket wordt aangemaakt.")
-        .setFooter("\u00A9 Limburg")
+        .setFooter("\u00A9 [BFTF] BelgiumRoleplay")
         .setTimestamp();
 
     message.channel.send(embed);
@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
                         VIEW_CHANNEL: false
                     });
 
-                    settedParent.updateOverwrite(message.guild.roles.cache.find(x => x.name === 'Support'), {
+                    settedParent.updateOverwrite(message.guild.roles.cache.find(x => x.name === 'Support-Team'), {
                         CREATE_INSTANT_INVITE: false,
                         READ_MESSAGES: true,
                         SEND_MESSAGES: true,
@@ -70,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
                         .setColor("#3498DB")
                         .setTitle(`Hallo ${message.author.username},`)
                         .setDescription(`Het Support team help u zo snel mogelijk veder. Reden: ${reason}`)
-                        .setFooter("\u00A9 Limburg")
+                        .setFooter("\u00A9 [BFTF] BelgiumRoleplay")
                         .setTimestamp();
 
                     settedParent.send(`<@&${tagrole}> `).then(m => m.delete({ timeout: 3000 }));
